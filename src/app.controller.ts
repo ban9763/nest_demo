@@ -7,6 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return 'app的服务';
+    return 'app的服务123';
   }
 }
