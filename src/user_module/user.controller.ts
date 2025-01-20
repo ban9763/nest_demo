@@ -6,8 +6,7 @@ export class UserController {
 
   @Get('/user')
   getHello(@Req() req): string {
-    console.log('hello 收到请求',req.params)
-    return '获取用户11'
+    console.log('hello 收到请求', req.params);
+    return '获取用户11';
   }
-
 }
