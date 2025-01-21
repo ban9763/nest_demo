@@ -1,5 +1,6 @@
 import { Controller, Get, Inject, Optional } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ForbiddenException } from './http/forbiddenException';
 import { UserService } from './user_module/user.service';
 
 @Controller('/api')
@@ -24,15 +25,15 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    // const Random = Math.random();
-    // if (Random > 0.5) {
-    //   return '大于0.5';
-    // } else {
-    //   throw new HttpException('没有权限, 禁止访问', HttpStatus.FORBIDDEN);
-    // }
+    const Random = Math.random();
+    if (Random > 0.5) {
+      return '大于0.5';
+    } else {
+      throw new ForbiddenException('禁止访问');
+    }
     console.log('路由逻辑');
-    const a: any = {};
-    return a.a.a.a;
+    // const a: any = {};
+    // return a.a.a.a;
   }
 
   @Get('/objectUser')
@@ -40,6 +41,7 @@ export class AppController {
     const service = this.userService
       ? this.userService
       : { getUser: () => '读取失败' };
+
     console.log('config', this.config);
     console.log('app_config', this.app_config);
     return service.getUser();
