@@ -24,8 +24,15 @@ export class AppController {
 
   @Get()
   getHello(): string {
+    // const Random = Math.random();
+    // if (Random > 0.5) {
+    //   return '大于0.5';
+    // } else {
+    //   throw new HttpException('没有权限, 禁止访问', HttpStatus.FORBIDDEN);
+    // }
     console.log('路由逻辑');
-    return 'app的服务123';
+    const a: any = {};
+    return a.a.a.a;
   }
 
   @Get('/objectUser')
