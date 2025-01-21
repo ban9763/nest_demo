@@ -14,6 +14,15 @@ import { UserService } from './user_module/user.service';
       provide: 'userService',
       useClass: UserService,
     },
+    {
+      provide: 'config',
+      useValue: {
+        port: 3000,
+        password: '123456',
+        secret: '4567890qwrewr',
+        aaa: '567890-s',
+      },
+    },
   ], // 我自己使用的那些服务
   exports: [], // 我要提供出去那些服务
 })
