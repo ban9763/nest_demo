@@ -9,6 +9,7 @@ export class AppController {
     private readonly appService: AppService,
     @Inject('userService') private readonly userService: UserService,
     @Inject('config') private readonly config: any,
+    @Inject('app_config') private readonly app_config: any,
   ) {}
 
   // 2. 第一种注入方式
@@ -25,6 +26,7 @@ export class AppController {
   @Get('/objectUser')
   getUserService(): string {
     console.log('config', this.config);
+    console.log('app_config', this.app_config);
     return this.userService.getUser();
   }
 }
