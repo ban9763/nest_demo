@@ -10,10 +10,10 @@ import { UserService } from './user_module/user.service';
   controllers: [AppController], // 我提供那些路由服务
   providers: [
     AppService,
-    {
-      provide: 'userService',
-      useClass: UserService,
-    },
+    // {
+    //   provide: 'userService',
+    //   useClass: UserService,
+    // },
     {
       provide: 'config',
       useValue: {
