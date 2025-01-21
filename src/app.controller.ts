@@ -29,9 +29,11 @@ export class AppController {
 
   @Get('/objectUser')
   getUserService(): string {
-    const service = this.userService ? this.userService : 'userService不存在';
+    const service = this.userService
+      ? this.userService
+      : { getUser: () => '读取失败' };
     console.log('config', this.config);
     console.log('app_config', this.app_config);
-    return this.userService.getUser();
+    return service.getUser();
   }
 }

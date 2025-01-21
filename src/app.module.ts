@@ -6,14 +6,14 @@ import { UserModule } from './user_module/user.module';
 import { UserService } from './user_module/user.service';
 
 @Module({
-  imports: [UserModule, DbModule], // 我这个模块需要引入的其他模块的服务
+  imports: [UserModule.forRoot(), DbModule], // 我这个模块需要引入的其他模块的服务
   controllers: [AppController], // 我提供那些路由服务
   providers: [
     AppService,
-    // {
-    //   provide: 'userService',
-    //   useClass: UserService,
-    // },
+    {
+      provide: 'userService',
+      useClass: UserService,
+    },
     {
       provide: 'config',
       useValue: {
