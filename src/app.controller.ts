@@ -3,7 +3,14 @@ import { AppService } from './app.service';
 
 @Controller('/api')
 export class AppController {
+  // 1. 第一种注入方式
   constructor(private readonly appService: AppService) {}
+
+  // 2. 第一种注入方式
+  // private readonly appService: AppService;
+  // constructor(appService: AppService) {
+  //   this.appService = appService;
+  // }
 
   @Get()
   getHello(): string {
