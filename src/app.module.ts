@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DbModule } from './db_module/db.module';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UserModule } from './user_module/user.module';
 import { UserService } from './user_module/user.service';
 
@@ -37,4 +38,10 @@ import { UserService } from './user_module/user.service';
   ], // 我自己使用的那些服务
   exports: [], // 我要提供出去那些服务
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    // consumer : 可以直接去定义中间件
+    // forRoutes('*') : 表示对任何路由生效
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

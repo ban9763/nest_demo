@@ -13,6 +13,7 @@ export class UserModule {
   // forRoot 名字随机
   static forRoot() {
     return {
+      // global: true, // 需要全部属性，可以开放。
       module: UserModule,
       providers: [UserService, AppService],
       Controller: [UserController],
