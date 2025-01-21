@@ -1,13 +1,8 @@
 import { Controller, Get, Ip, Req } from '@nestjs/common';
-import { DbService } from 'src/db_module/db.service';
-import { AppService } from '../app.service';
 
 @Controller('/api')
-export class UserController {
-  constructor(
-    private readonly app_service: AppService,
-    private readonly db_service: DbService,
-  ) {}
+export class DbController {
+  constructor() {}
 
   @Get('/user/:id')
   getHello(@Req() req, @Ip() ip): string {
@@ -23,15 +18,5 @@ export class UserController {
   @Get('ab*cd')
   findAll() {
     return 'This route uses a wildcard';
-  }
-
-  @Get('/appData')
-  getAppData() {
-    return this.app_service.getHello();
-  }
-
-  @Get('/dbData')
-  getDbData() {
-    return this.db_service.getDb();
   }
 }
