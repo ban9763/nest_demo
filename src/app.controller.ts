@@ -24,6 +24,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
+    console.log('路由逻辑');
     return 'app的服务123';
   }
 

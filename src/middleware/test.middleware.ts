@@ -2,10 +2,10 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 
 @Injectable()
-export class LoggerMiddleware implements NestMiddleware {
+export class TestMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    console.log('中间件 logger之前');
-    next(); // 逻辑部分的处理
-    console.log('中间件 logger之后');
+    console.log('中间件 test 之前');
+    next();
+    console.log('中间件 test 之后');
   }
 }
