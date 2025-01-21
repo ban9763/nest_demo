@@ -7,6 +7,8 @@ export class AppController {
   // 1. 第一种注入方式
   constructor(
     private readonly appService: AppService,
+    // optional: 服务要使用，但是不确定是否注入时，使用 optional修饰
+    // 可以保障业务的正常进行
     @Optional()
     @Inject('userService')
     private readonly userService: UserService,
