@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DbModule } from './db_module/db.module';
+import { FuncMiddleware } from './middleware/func.middleware';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { TestMiddleware } from './middleware/test.middleware';
 import { UserModule } from './user_module/user.module';
@@ -43,6 +44,8 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     // consumer : 可以直接去定义中间件
     // forRoutes('*') : 表示对任何路由生效
-    consumer.apply(TestMiddleware, LoggerMiddleware).forRoutes('*');
+    consumer
+      .apply(TestMiddleware, LoggerMiddleware, FuncMiddleware)
+      .forRoutes('*');
   }
 }
