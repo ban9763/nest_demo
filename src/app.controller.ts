@@ -1,5 +1,6 @@
-import { Controller, Get, Inject, Optional } from '@nestjs/common';
+import { Controller, Get, Inject, Optional, UseFilters } from '@nestjs/common';
 import { AppService } from './app.service';
+import { HttpExceptionFilter } from './http/exception.filter';
 import { ForbiddenException } from './http/forbiddenException';
 import { UserService } from './user_module/user.service';
 
@@ -24,6 +25,7 @@ export class AppController {
   // }
 
   @Get()
+  @UseFilters(new HttpExceptionFilter())
   getHello(): string {
     const Random = Math.random();
     if (Random > 0.5) {
