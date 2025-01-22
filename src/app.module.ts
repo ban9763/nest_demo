@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DbModule } from './db_module/db.module';
@@ -43,6 +43,25 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     // consumer : 可以直接去定义中间件
     // forRoutes('*') : 表示对任何路由生效
-    consumer.apply(TestMiddleware, LoggerMiddleware).forRoutes('*');
+    // consumer.apply(TestMiddleware, LoggerMiddleware).forRoutes('*');
+
+    consumer
+      .apply(TestMiddleware, LoggerMiddleware)
+      // 设置那些不能触发中间件
+      .exclude(
+        { path: 'cats', method: RequestMethod.GET },
+        { path: 'cats', method: RequestMethod.POST },
+        'cats/(.*)',
+      )
+      // 设置触发中间件的范围
+      .forRoutes(
+        // 第一种：只对AppController生效
+        AppController,
+        // 第二种：对'/api/user'下的get请求生效
+        // {
+        //   path: '/api/user',
+        //   method: RequestMethod.GET,
+        // },
+      );
   }
 }

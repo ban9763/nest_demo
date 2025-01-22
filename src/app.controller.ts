@@ -5,6 +5,7 @@ import { ForbiddenException } from './http/forbiddenException';
 import { UserService } from './user_module/user.service';
 
 @Controller('/api')
+@UseFilters(new HttpExceptionFilter()) // 第二种：指定controller生效异常过滤器
 export class AppController {
   // 1. 第一种注入方式
   constructor(
@@ -25,7 +26,7 @@ export class AppController {
   // }
 
   @Get()
-  @UseFilters(new HttpExceptionFilter())
+  @UseFilters(new HttpExceptionFilter()) // 第一种：指定接口位置生效异常过滤器
   getHello(): string {
     const Random = Math.random();
     if (Random > 0.5) {
@@ -33,7 +34,7 @@ export class AppController {
     } else {
       throw new ForbiddenException('禁止访问');
     }
-    console.log('路由逻辑');
+    // console.log('路由逻辑');
     // const a: any = {};
     // return a.a.a.a;
   }
